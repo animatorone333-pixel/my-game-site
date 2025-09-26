@@ -31,14 +31,15 @@ export default function Home() {
   return (
     <main
       style={{
-        width: "100vw",
+        width: "100vw", // 修正這一行
         height: "100vh",
-        overflow: "hidden", // ✅ 超出裁切
+        overflow: "hidden",
         backgroundColor: "black",
+        position: "relative", // 新增這行
       }}
     >
       {/* 舞台 (1280x720) */}
-      <div
+      <div    
         style={{
           width: "1280px",
           height: "720px",
