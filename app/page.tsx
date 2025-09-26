@@ -1,10 +1,20 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
+  // 合併所有 useState、useEffect、handleLogin、UI內容
   const [scale, setScale] = useState(1);
   const [offsetX, setOffsetX] = useState(0);
   const [offsetY, setOffsetY] = useState(0);
+  const [showLogin, setShowLogin] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [formData, setFormData] = useState({
+    department: "",
+    name: "",
+    nickname: "",
+    avatar: "/avatar1.png",
+  });
 
   useEffect(() => {
     const updateScale = () => {
@@ -12,34 +22,34 @@ export default function Home() {
       const baseHeight = 720;
       const scaleX = window.innerWidth / baseWidth;
       const scaleY = window.innerHeight / baseHeight;
-
-      // ✅ 取「最大值」填滿螢幕，可能會裁切
       const scale = Math.max(scaleX, scaleY);
-
       setScale(scale);
-
-      // ✅ 置中計算偏移
       setOffsetX((window.innerWidth - baseWidth * scale) / 2);
       setOffsetY((window.innerHeight - baseHeight * scale) / 2);
     };
-
     updateScale();
     window.addEventListener("resize", updateScale);
     return () => window.removeEventListener("resize", updateScale);
   }, []);
 
+  const handleLogin = () => {
+    console.log("送到後端的資料：", formData);
+    setLoggedIn(true);
+    setShowLogin(false);
+  };
+
   return (
     <main
       style={{
-        width: "100vw", // 修正這一行
+        width: "100vw",
         height: "100vh",
         overflow: "hidden",
         backgroundColor: "black",
-        position: "relative", // 新增這行
+        position: "relative",
       }}
     >
       {/* 舞台 (1280x720) */}
-      <div    
+      <div
         style={{
           width: "1280px",
           height: "720px",
@@ -101,20 +111,239 @@ export default function Home() {
             </ul>
           </div>
         </div>
-
-        {/* 小島 */}
-        <img
-          src="/game_02.png"
-          alt="小島"
-          style={{
-            position: "absolute",
-            top: "150px",
-            left: "950px",
-            width: "220px",
-            height: "auto",
-          }}
-        />
       </div>
+      {/* 導覽列 */}
+      <nav
+        style={{
+          position: "absolute",
+          bottom: "100px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          background: "rgba(0,0,0,0.6)",
+          padding: "4px 15px",
+          borderRadius: "6px",
+          display: "inline-flex",
+          gap: "0px",
+        }}
+      >
+        <Link
+          href="/about"
+          style={{
+            padding: "6px 12px",
+            borderRadius: "6px 0 0 6px",
+            color: "white",
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
+          關於我們
+        </Link>
+
+        <Link
+          href="/register"
+          style={{
+            padding: "6px 12px",
+            borderLeft: "1px solid rgba(255,255,255,0.5)", // 分隔線
+            color: "white",
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
+          活動報名
+        </Link>
+
+        <Link
+          href="/vote"
+          style={{
+            padding: "6px 12px",
+            borderLeft: "1px solid rgba(255,255,255,0.5)", // 分隔線
+            color: "white",
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
+          桌遊投票
+        </Link>
+
+        <Link
+          href="/shop"
+          style={{
+            padding: "6px 12px",
+            borderLeft: "1px solid rgba(255,255,255,0.5)", // 分隔線
+            color: "white",
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
+          推薦購買
+        </Link>
+
+        <Link
+          href="/gallery"
+          style={{
+            padding: "6px 12px",
+            borderLeft: "1px solid rgba(255,255,255,0.5)", // 分隔線
+            borderRadius: "0 6px 6px 0",
+            color: "white",
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
+          活動劇照
+        </Link>
+
+        <Link
+          href="/custom-game"
+          style={{
+            padding: "6px 12px",
+            borderLeft: "1px solid rgba(255,255,255,0.5)", // 分隔線
+            color: "white",
+            textDecoration: "none",
+            whiteSpace: "nowrap",
+          }}
+        >
+          自製遊戲分享
+        </Link>
+      </nav>
+
+      {/* 右上角 LOG IN 按鈕 */}
+      <button
+        onClick={() => setShowLogin(true)}
+        style={{
+          position: "absolute",
+          top: "20px",
+          right: "20px",
+          background: "rgba(0,0,0,0.6)",
+          color: "white",
+          padding: "8px 16px",
+          borderRadius: "8px",
+          border: "none",
+          cursor: "pointer",
+          fontWeight: "bold",
+          fontSize: "16px",
+        }}
+      >
+        LOG IN
+      </button>
+
+      {/* 登入視窗（點 LOG IN 才出現） */}
+      {showLogin && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.35)",
+            zIndex: 1000,
+          }}
+          onClick={() => setShowLogin(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "434px",
+              height: "302px",
+              backgroundImage: "url('/login_bg.png.png')", // 你的背景圖
+              backgroundSize: "100% 100%", // 以原圖尺寸等比鋪滿容器
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            {/* 透明輸入欄（完全貼著圖片上的灰色框） */}
+            <input
+              type="text"
+              value={formData.department}
+              onChange={(e) =>
+                setFormData({ ...formData, department: e.target.value })
+              }
+              // 不要顯示 placeholder（圖片已有文字）
+              placeholder=""
+              autoComplete="off"
+              style={{
+                position: "absolute",
+                top: "112px",
+                left: "64px",
+                width: "305px",
+                height: "28px",
+                background: "transparent",
+                border: "none",
+                outline: "none",
+                color: "#222",
+                fontSize: 14,
+                textAlign: "center",
+                // ...(DEBUG_GUIDES ? { boxShadow: 'inset 0 0 0 1px red' } : {}),
+              }}
+            />
+
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
+              placeholder=""
+              autoComplete="off"
+              style={{
+                position: "absolute",
+                top: "151px",
+                left: "64px",
+                width: "305px",
+                height: "28px",
+                background: "transparent",
+                border: "none",
+                outline: "none",
+                color: "#222",
+                fontSize: 14,
+                textAlign: "center",
+                // ...(DEBUG_GUIDES ? { boxShadow: 'inset 0 0 0 1px red' } : {}),
+              }}
+            />
+
+            <input
+              type="text"
+              value={formData.nickname}
+              onChange={(e) =>
+                setFormData({ ...formData, nickname: e.target.value })
+              }
+              placeholder=""
+              autoComplete="off"
+              style={{
+                position: "absolute",
+                top: "190px",
+                left: "64px",
+                width: "305px",
+                height: "28px",
+                background: "transparent",
+                border: "none",
+                outline: "none",
+                color: "#222",
+                fontSize: 14,
+                textAlign: "center",
+                // ...(DEBUG_GUIDES ? { boxShadow: 'inset 0 0 0 1px red' } : {}),
+              }}
+            />
+
+            {/* 透明 OK 按鈕（直接覆蓋在綠色按鈕上） */}
+            <button
+              onClick={handleLogin}
+              style={{
+                position: "absolute",
+                left: "165px",
+                top: "252px",
+                width: "108px",
+                height: "38px",
+                background: "transparent",
+                border: "none",
+                cursor: "pointer",
+                // ...(DEBUG_GUIDES ? { outline: '2px dashed red' } : {}),
+              }}
+              aria-label="OK"
+            />
+          </div>
+        </div>
+      )}
     </main>
   );
 }
