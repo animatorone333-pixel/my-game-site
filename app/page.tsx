@@ -38,6 +38,7 @@ export default function Home() {
   ];
   const [jobIndex, setJobIndex] = useState(0);
   const [loginDays, setLoginDays] = useState(1);
+  const [hasProfession, setHasProfession] = useState(false);
 
   useEffect(() => {
     const updateScale = () => {
@@ -88,11 +89,36 @@ export default function Home() {
           avatar: "/game_04.png",
           loggedIn: true,
         });
+
+        // 1. 登入時寫入 localStorage
+        localStorage.setItem("mygame_loggedIn", "true");
+        localStorage.setItem("mygame_user", JSON.stringify({
+          ...formData,
+          profession: professions[jobIndex], // 存下當下選的職業
+        }));
       }
     } catch (err) {
       console.error("登入失敗", err);
     }
   };
+
+  // 2. 每個頁面初始化時讀取
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("mygame_loggedIn") === "true";
+    const user = localStorage.getItem("mygame_user");
+    if (loggedIn && user) {
+      setLoggedIn(true);
+      setFormData(JSON.parse(user));
+    }
+  }, []);
+
+  useEffect(() => {
+    const user = localStorage.getItem("mygame_user");
+    if (user) {
+      const parsed = JSON.parse(user);
+      if (parsed.profession) setHasProfession(true);
+    }
+  }, [showLogin]);
 
   return (
     <main
@@ -708,7 +734,9 @@ export default function Home() {
         <>
           <button
             onClick={() => {
-              // 登出：清除使用者狀態並關閉可能開啟的 modal / login
+              // 登出時同步清除 localStorage
+              localStorage.removeItem("mygame_loggedIn");
+              localStorage.removeItem("mygame_user");
               setLoggedIn(false);
               setShowProfile(false);
               setProfileUser(undefined);
@@ -735,7 +763,7 @@ export default function Home() {
             Log out
           </button>
 
-          {/* 使用者顯示區：固定在舞台內，會跟視窗縮放（以右上角為錨點，位置不跑） */}
+          {/* 使用者顯示區 */}
           <div
             style={{
               position: "absolute",
@@ -752,26 +780,31 @@ export default function Home() {
               gap: 8,
               zIndex: 9999,
               boxSizing: "border-box",
-              transform: `scale(${scale * 0.7})`,   // 縮小 20% 後再跟隨舞台 scale
+              transform: `scale(${scale * 0.7})`,
               transformOrigin: "top right",
               willChange: "transform",
               pointerEvents: "auto",
             }}
           >
-             {/* 若未來有多位使用者可改成 map(profileList => ...)，目前顯示目前登入者 */}
-             {[currentUser]
-               .filter((u) => !!u && (u.loggedIn ?? loggedIn))
-               .map((u, i) => (
-                 <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                   <div style={{ width: 28, height: 28, borderRadius: "50%", overflow: "hidden", background: "#333", flexShrink: 0 }}>
-                     <img src={u?.avatar || formData.avatar} alt="avatar" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-                   </div>
-                   <div style={{ color: "white", fontSize: 12, fontWeight: 700, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", maxWidth: 76 }}>
-                     {u?.nickname || formData.nickname || "訪客"}
-                   </div>
-                 </div>
-               ))}
-           </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ width: 28, height: 28, borderRadius: "50%", overflow: "hidden", background: "#333", flexShrink: 0 }}>
+                <img
+                  src="/game_04.png" // 改為固定顯示 game_04
+                  alt="avatar"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "50%",
+                    display: "block",
+                  }}
+                />
+              </div>
+              <div style={{ color: "white", fontSize: 12, fontWeight: 700, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden", maxWidth: 76 }}>
+                {currentUser.nickname || formData.nickname || "訪客"}
+              </div>
+            </div>
+          </div>
         </>
       )}
     </main>
