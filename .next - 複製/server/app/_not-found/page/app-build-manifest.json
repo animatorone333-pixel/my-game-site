@@ -1,0 +1,19 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/ab265_next_dist_a2b8ea17._.js",
+      "static/chunks/my-game-site_app_favicon_ico_mjs_e7342e9e._.js",
+      "static/chunks/[root-of-the-server]__9063f314._.css",
+      "static/chunks/my-game-site_app_layout_tsx_0669e300._.js",
+      "static/chunks/[turbopack]_browser_dev_hmr-client_hmr-client_ts_2a589e9c._.js",
+      "static/chunks/ab265_next_dist_compiled_react-dom_ca51f4cf._.js",
+      "static/chunks/ab265_next_dist_compiled_next-devtools_index_f24ce0c3.js",
+      "static/chunks/ab265_next_dist_compiled_a6aad791._.js",
+      "static/chunks/ab265_next_dist_client_fbc20ffd._.js",
+      "static/chunks/ab265_next_dist_13b8c78c._.js",
+      "static/chunks/ab265_@swc_helpers_cjs_89cb3f31._.js",
+      "static/chunks/my-game-site_a0ff3932._.js",
+      "static/chunks/turbopack-my-game-site_a1937f64._.js"
+    ]
+  }
+}

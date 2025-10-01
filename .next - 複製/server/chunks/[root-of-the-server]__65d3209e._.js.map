@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 55, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/verity.liu/my-game-site/app/api/login/route.ts"],"sourcesContent":["import { NextResponse } from \"next/server\";\r\n\r\nexport async function POST(req: Request) {\r\n  const body = await req.json();\r\n\r\n  console.log(\"收到登入資料：\", body);\r\n\r\n  return NextResponse.json({\r\n    success: true,\r\n    message: \"登入成功\",\r\n    user: body,\r\n  });\r\n}\r\n\r\n"],"names":[],"mappings":";;;;AAAA;;AAEO,eAAe,KAAK,GAAY;IACrC,MAAM,OAAO,MAAM,IAAI,IAAI;IAE3B,QAAQ,GAAG,CAAC,WAAW;IAEvB,OAAO,gJAAY,CAAC,IAAI,CAAC;QACvB,SAAS;QACT,SAAS;QACT,MAAM;IACR;AACF","debugId":null}}]
+}

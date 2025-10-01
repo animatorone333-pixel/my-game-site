@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/YUM/my-game-site/app/about/page.tsx"],"sourcesContent":["export default function AboutPage() {\n  return (\n    <main\n      style={{\n        minHeight: \"100vh\",\n        backgroundColor: \"#111\",\n        color: \"white\",\n        textAlign: \"center\",\n        padding: \"50px 20px\",\n      }}\n    >\n      <h1 style={{ fontSize: \"2.5rem\", marginBottom: \"20px\" }}>\n        🎮 關於遊戲研究社\n      </h1>\n      <p style={{ fontSize: \"1.2rem\", maxWidth: \"800px\", margin: \"0 auto\" }}>\n        我們是熱愛桌遊、電玩與戶外遊戲的社團，定期舉辦聚會、比賽與特色活動。\n        <br />\n        在這裡，你能找到志同道合的朋友，一起探索遊戲的無限可能！\n      </p>\n    </main>\n  );\n}\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,oQAAC;QACC,OAAO;YACL,WAAW;YACX,iBAAiB;YACjB,OAAO;YACP,WAAW;YACX,SAAS;QACX;;0BAEA,oQAAC;gBAAG,OAAO;oBAAE,UAAU;oBAAU,cAAc;gBAAO;0BAAG;;;;;;0BAGzD,oQAAC;gBAAE,OAAO;oBAAE,UAAU;oBAAU,UAAU;oBAAS,QAAQ;gBAAS;;oBAAG;kCAErE,oQAAC;;;;;oBAAK;;;;;;;;;;;;;AAKd","debugId":null}}]
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/verity.liu/my-game-site/app/about/page.tsx"],"sourcesContent":["export default function AboutPage() {\r\n  return (\r\n    <main\r\n      style={{\r\n        minHeight: \"100vh\",\r\n        backgroundColor: \"#111\",\r\n        color: \"white\",\r\n        textAlign: \"center\",\r\n        padding: \"50px 20px\",\r\n      }}\r\n    >\r\n      <h1 style={{ fontSize: \"2.5rem\", marginBottom: \"20px\" }}>\r\n        🎮 關於遊戲研究社\r\n      </h1>\r\n      <p style={{ fontSize: \"1.2rem\", maxWidth: \"800px\", margin: \"0 auto\" }}>\r\n        我們是熱愛桌遊、電玩與戶外遊戲的社團，定期舉辦聚會、比賽與特色活動。\r\n        <br />\r\n        在這裡，你能找到志同道合的朋友，一起探索遊戲的無限可能！\r\n      </p>\r\n    </main>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QACC,OAAO;YACL,WAAW;YACX,iBAAiB;YACjB,OAAO;YACP,WAAW;YACX,SAAS;QACX;;0BAEA,8OAAC;gBAAG,OAAO;oBAAE,UAAU;oBAAU,cAAc;gBAAO;0BAAG;;;;;;0BAGzD,8OAAC;gBAAE,OAAO;oBAAE,UAAU;oBAAU,UAAU;oBAAS,QAAQ;gBAAS;;oBAAG;kCAErE,8OAAC;;;;;oBAAK;;;;;;;;;;;;;AAKd","debugId":null}}]
+}
