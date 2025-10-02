@@ -135,7 +135,11 @@ export default function AboutPage() {
   }
   `;
 
+<<<<<<< HEAD
   const HOVER_OFFSET = 0; // 不再根據 hover 改变
+=======
+  const HOVER_OFFSET = 0; // 不再根據 hover 改變
+>>>>>>> f55b0af659a275a7328f0cc8f29befcd6532a176
 
   // 新增 hover 狀態
   const [section2Hover, setSection2Hover] = useState(false);
@@ -190,6 +194,7 @@ export default function AboutPage() {
             background: "rgba(0,0,0,0.45)", // 透明度可調整
             zIndex: 1,
             pointerEvents: "none",
+<<<<<<< HEAD
           }}
         />
 
@@ -259,6 +264,49 @@ export default function AboutPage() {
 
         {/* scroll container: 兩個橫向區塊，寬各為 100vw */}
         <div style={{ display: "flex", flexDirection: "row", height: "100vh", width: "00vw", gap: "20vw" }}>
+=======
+          }}
+        />
+
+        {/* 固定縮放的 game_08.png 圖片容器 */}
+        <div
+          id="game08"
+          style={{
+            position: "absolute",
+            // 往上多移 40px（原本 +64，現在 +104）
+            top: `calc(50% - ${BASE_HEIGHT / 2 * scale + 160 * scale}px)`,
+            left: `calc(50% - ${BASE_WIDTH / 2 * scale - -60 * scale}px)`,
+            width: BASE_WIDTH,
+            height: BASE_HEIGHT,
+            transform: `scale(${scale})`,
+            transformOrigin: "top left",
+            zIndex: 4,
+            pointerEvents: "none",
+            transition: "transform 0.25s cubic-bezier(.2,.9,.2,1)",
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
+          }}
+        >
+          <img
+            src="game_08.png"
+            alt="遊戲研究社"
+            style={{
+              width: "320px",
+              maxWidth: "90%",
+              height: "auto",
+              marginTop: 0,
+              marginLeft: 0,
+              filter: "drop-shadow(0 2px 12px rgba(0,0,0,0.18))",
+              pointerEvents: "none",
+              display: "block",
+            }}
+          />
+        </div>
+
+        {/* scroll container: 兩個橫向區塊，寬各為 100vw */}
+        <div style={{ display: "flex", flexDirection: "row", height: "100vh", width: "200vw", gap: "20vw" }}>
+>>>>>>> f55b0af659a275a7328f0cc8f29befcd6532a176
           {/* 第一區塊：內容靠右一點，減少與第二區塊的視覺空白 */}
           <section
             style={{
@@ -266,6 +314,7 @@ export default function AboutPage() {
               height: "100vh",
               display: "flex",
               alignItems: "center",
+<<<<<<< HEAD
               justifyContent: "center", // 讓區塊本身置中
               paddingRight: "12vw",
               boxSizing: "border-box",
@@ -372,6 +421,81 @@ export default function AboutPage() {
             </div>
 
             {/* 回首頁按鈕已移入 game08-wrap，這裡保留空白 */}
+=======
+              justifyContent: "flex-end",
+              paddingRight: "12vw",
+              boxSizing: "border-box",
+            }}
+          >
+            {/* 介紹內容容器直接放這裡 */}
+            <div
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+              style={{
+                background: "rgba(255,255,255,0.02)",
+                padding: 55,
+                borderRadius: 16,
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "24px",
+                width: BASE_WIDTH,
+                height: BASE_HEIGHT,
+                boxSizing: "border-box",
+                transition: "box-shadow 220ms ease",
+                willChange: "transform, box-shadow",
+                animation: hover ? "livelyFloat 1.2s cubic-bezier(.2,.9,.2,1) forwards" : "none",
+                boxShadow: hover ? "0 20px 40px rgba(0,0,0,0.35)" : "none",
+                zIndex: 4,
+                pointerEvents: "auto",
+                transform: `scale(${scale})`,
+                marginTop: "120px",
+                marginRight: "120px", // 新增這行，讓內容再往左
+              }}
+            >
+              {/* 介紹文字 */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 8,
+                  maxWidth: "36ch",
+                  color: "white",
+                  fontSize: "16px",
+                  lineHeight: 1.5,
+                  textAlign: "left",
+                }}
+              >
+                <p style={{ margin: 0 }}>遊戲研究社從 2025 年開始，加入更多遊戲元素與活動。</p>
+                <p style={{ margin: 0 }}>目前有 Switch、桌遊、玩具版斗城玩具槍等內容。</p>
+                <p style={{ margin: 0 }}>未來會陸續增加更多元的遊戲品項與活動。</p>
+                <p style={{ margin: 0 }}>每月舉辦主題日與小競賽，冠軍有小獎勵，歡迎參加！</p>
+              </div>
+              {/* 回首頁按鈕 */}
+              <button
+                onClick={() => (window.location.href = "/")}
+                style={{
+                  position: "absolute",
+                  right: 32,
+                  bottom: 32,
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  color: "white",
+                  padding: "8px 18px",
+                  borderRadius: 6,
+                  cursor: "pointer",
+                  fontSize: 15,
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
+                  pointerEvents: "auto",
+                  zIndex: 5,
+                }}
+                aria-label="回首頁"
+              >
+                回首頁
+              </button>
+            </div>
+>>>>>>> f55b0af659a275a7328f0cc8f29befcd6532a176
           </section>
 
           {/* 第二區塊：內容靠左一點，減少與第一區塊的視覺空白 */}
@@ -382,7 +506,11 @@ export default function AboutPage() {
               display: "flex",
               alignItems: "center",
               justifyContent: "flex-start",
+<<<<<<< HEAD
               paddingLeft: "30vw", // 往左靠一點，從 12vw 調整為 6vw
+=======
+              paddingLeft: "12vw",
+>>>>>>> f55b0af659a275a7328f0cc8f29befcd6532a176
               boxSizing: "border-box",
               zIndex: 9999,
             }}

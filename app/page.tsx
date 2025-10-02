@@ -107,6 +107,7 @@ export default function Home() {
     const loggedIn = localStorage.getItem("mygame_loggedIn") === "true";
     const user = localStorage.getItem("mygame_user");
     if (loggedIn && user) {
+<<<<<<< HEAD
       const parsed = JSON.parse(user);
       setLoggedIn(true);
       setFormData(parsed);
@@ -115,6 +116,10 @@ export default function Home() {
         avatar: parsed.avatar || "/game_04.png",
         loggedIn: true,
       });
+=======
+      setLoggedIn(true);
+      setFormData(JSON.parse(user));
+>>>>>>> f55b0af659a275a7328f0cc8f29befcd6532a176
     }
   }, []);
 
